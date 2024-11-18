@@ -10,6 +10,8 @@ const globalErrorHandler = require('./controllers/errorHandler/errorController')
 
 // ---------------- route modules go here -------------------------------------
 
+const adminRouter = require('./routes/admin/adminRoutes.js');
+
 // ---------------------------------------------------------------------------
 
 const app = express();
@@ -42,6 +44,9 @@ if (process.env.NODE_ENV === 'development') {
 };
 
 //-------------- Routes should go here ---------------------------
+
+// admin routes
+app.use('/api/v1/admin', adminRouter);
 
 //----------------------------------------------------------------
 

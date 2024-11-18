@@ -1,0 +1,10 @@
+{
+    "firstName": "Cverify",
+    "lastName": "Admin",
+    "email": "cverify.admin@gmail.com",
+    "photo": "http://cverify.admin.com",
+    "role": "admin",
+    "password": "$2a$12$HXqaiXbFyeBwsnyPUsuq4ulBJP8kQJ2Ewb6ZBqo8IC6XrNLC7manG",
+    "active": true,
+    "createdAt": "2024-11-18T10:00:00.000Z"
+}
