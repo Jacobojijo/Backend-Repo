@@ -11,6 +11,7 @@ const globalErrorHandler = require('./controllers/errorHandler/errorController')
 // ---------------- route modules go here -------------------------------------
 
 const adminRouter = require('./routes/admin/adminRoutes.js');
+const studentRouter = require('./routes/student/studentRoutes');
 
 // ---------------------------------------------------------------------------
 
@@ -47,6 +48,8 @@ if (process.env.NODE_ENV === 'development') {
 
 // admin routes
 app.use('/api/v1/admin', adminRouter);
+// student routes
+app.use('/api/v1/student/', studentRouter);
 
 //----------------------------------------------------------------
 
