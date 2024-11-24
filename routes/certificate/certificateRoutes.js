@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { verifyStudentToken } = require('../../controllers/student/studentAuthController');
+const { protect } = require('../../controllers/student/studentAuthController');
 const {
     getCertificate,
     downloadCertificate,
 } = require('../../controllers/certificate/certificateController');
 
-router.get('/:certificateID', verifyStudentToken, getCertificate);
+router.get('/:certificateID', protect, getCertificate);
 
-router.get('/download/:certificateID', verifyStudentToken, downloadCertificate);
+router.get('/download/:certificateID', protect, downloadCertificate);
 
 module.exports = router;

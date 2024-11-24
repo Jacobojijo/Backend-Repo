@@ -1,6 +1,6 @@
 const catchAsync = require('../../utils/catchAsync');
 const AppError = require('../../utils/appError');
-const Certificate = require('../../models/certificateModel');
+const Certificate = require('../../models/admin/certificateModel');
 const xlsx = require('xlsx');
 const mongoose = require('mongoose');
 

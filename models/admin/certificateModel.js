@@ -1,12 +1,6 @@
 const mongoose = require('mongoose');
 
 const certificateSchema = new mongoose.Schema({
-    certificateID: {
-        type: String,
-        required: [true, 'A certificate must have a unique ID'],
-        unique: true,
-        trim: true
-    },
     studentName: {
         type: String,
         required: [true, 'Student name is required'],

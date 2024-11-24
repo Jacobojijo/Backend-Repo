@@ -1,4 +1,4 @@
-const Certificate = require('../../models/certificate/certificateModels');
+const Certificate = require('../../models/admin/certificateModel');
 const PDFDocument = require('pdfkit');
 
 exports.getCertificate = async (req, res) => {

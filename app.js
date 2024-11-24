@@ -49,6 +49,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // admin routes
 app.use('/api/v1/admin', adminRouter);
+app.use('/api/v1/student/', studentRouter);
+app.use('/api/v1/certificate/', certificateRouter);
+
 
 //----------------------------------------------------------------
 
