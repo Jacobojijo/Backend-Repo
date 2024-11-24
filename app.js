@@ -7,6 +7,7 @@ const cors = require('cors')
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const globalErrorHandler = require('./controllers/errorHandler/errorController');
+const fileUpload = require('express-fileupload');
 
 // ---------------- route modules go here -------------------------------------
 
