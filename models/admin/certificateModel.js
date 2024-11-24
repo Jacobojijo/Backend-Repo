@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 
 const certificateSchema = new mongoose.Schema({
+    certificateID: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true
+    },
     studentName: {
         type: String,
         required: [true, 'Student name is required'],
@@ -28,10 +35,16 @@ const certificateSchema = new mongoose.Schema({
     toObject: { virtuals: true }
 });
 
-// Create a unique compound index
-certificateSchema.index({ certificateID: 1 }, { unique: true });
+// Middleware to generate a unique certificate ID before saving
+certificateSchema.pre('save', function(next) {
+    if (!this.certificateID) {
+        const timestamp = Date.now().toString(36).toUpperCase(); // Base36 timestamp
+        const uniqueID = uuidv4().split('-')[0].toUpperCase(); // Short UUID
+        this.certificateID = `CERT-${timestamp}-${uniqueID}`; // Format: CERT-<timestamp>-<short-uuid>
+    }
+    next();
+});
 
-// Optional: Add a virtual property for internship duration
 certificateSchema.virtual('internshipDuration').get(function() {
     const duration = this.endDate - this.startDate;
     const days = Math.floor(duration / (1000 * 60 * 60 * 24));

@@ -25,23 +25,24 @@ exports.downloadCertificate = async (req, res) => {
             return res.status(404).json({ message: 'Certificate not found.' });
         }
 
-        // Generate PDF
-        const doc = new PDFDocument();
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader(
             'Content-Disposition',
             `attachment; filename=${certificateID}_certificate.pdf`
         );
 
+        const doc = new PDFDocument();
         doc.pipe(res);
-        doc.fontSize(16).text(`Certificate ID: ${certificateID}`);
-        doc.text(`Name: ${certificate.name}`);
-        doc.text(`Course: ${certificate.course}`);
-        doc.text(`Grade: ${certificate.grade}`);
-        doc.text(`Issue Date: ${certificate.issueDate.toDateString()}`);
+
+        doc.fontSize(16).text(`Certificate ID: ${certificate.certificateID}`);
+        doc.text(`Student Name: ${certificate.studentName}`);
+        doc.text(`Internship Domain: ${certificate.internshipDomain}`);
+        doc.text(`Start Date: ${new Date(certificate.startDate).toDateString()}`);
+        doc.text(`End Date: ${new Date(certificate.endDate).toDateString()}`);
         if (certificate.expiryDate) {
-            doc.text(`Expiry Date: ${certificate.expiryDate.toDateString()}`);
+            doc.text(`Expiry Date: ${new Date(certificate.expiryDate).toDateString()}`);
         }
+
         doc.end();
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
