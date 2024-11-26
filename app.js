@@ -13,6 +13,7 @@ const fileUpload = require('express-fileupload');
 
 const adminRouter = require('./routes/admin/adminRoutes.js');
 const studentRouter = require('./routes/student/studentRoutes');
+const certificateRouter = require('./routes/certificate/certificateRoutes.js');
 
 // ---------------------------------------------------------------------------
 
@@ -49,8 +50,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // admin routes
 app.use('/api/v1/admin', adminRouter);
-// student routes
 app.use('/api/v1/student/', studentRouter);
+app.use('/api/v1/certificate/', certificateRouter);
+
 
 //----------------------------------------------------------------
 
