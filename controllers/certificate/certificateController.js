@@ -1,6 +1,7 @@
 const Certificate = require('../../models/admin/certificateModel');
 const PDFDocument = require('pdfkit');
 
+// Retrieve a single certificate by ID
 exports.getCertificate = async (req, res) => {
     try {
         const { certificateID } = req.params;
@@ -16,6 +17,7 @@ exports.getCertificate = async (req, res) => {
     }
 };
 
+// Download a certificate as a PDF
 exports.downloadCertificate = async (req, res) => {
     try {
         const { certificateID } = req.params;
@@ -44,6 +46,21 @@ exports.downloadCertificate = async (req, res) => {
         }
 
         doc.end();
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+// Retrieve all certificates
+exports.getAllCertificates = async (req, res) => {
+    try {
+        const certificates = await Certificate.find();
+
+        res.status(200).json({
+            status: 'success',
+            results: certificates.length,
+            data: certificates
+        });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
